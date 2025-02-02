@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Will You Be My Valentine?</title>
+    <link rel="icon" href="gifs/heart.gif" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f9e3e3;
+        font-family: "Arial", sans-serif;
+        flex-direction: column;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2.5em;
+        color: #d32f2f;
+      }
+
+      .buttons {
+        margin-top: 20px;
+      }
+
+      .yes-button {
+        font-size: 1.5em;
+        padding: 10px 20px;
+        margin-right: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .no-button {
+        font-size: 1.5em;
+        padding: 10px 20px;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        z-index: 100;
+      }
+
+      .gif_container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-top: 20px;
+        mix-blend-mode: color-burn;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Will you be my Valentine?</h1>
+      <div class="buttons">
+        <button class="yes-button" onclick="handleYesClick()">Yes</button>
+        <button class="no-button" onclick="handleNoClick()">No</button>
+      </div>
+      <div class="gif_container">
+        <img src="gifs/hungry lanlancat GIF by MochiDad.gif" alt="Cute GIF" />
+      </div>
+    </div>
+    <script>
+      const messages = [
+        "Wait, are you sure? 😢",
+        "Think again... 😭",
+        "No way, you didn't mean that! 😟",
+        "Please reconsider, cutie... 🥺",
+        "You're breaking my heart! 💔",
+        "Last chance to change your mind! 😭",
+        "Don't do this to me... 😩",
+        "Okay... but it really hurts... 🥲",
+        "Fine, I'll stop bothering you... 😞",
+        "Just kidding, PLEASE SAY YES! ❤️😍",
+      ];
+
+      const gifs = [
+        "gifs/break.gif",
+        "gifs/angry.gif",
+        "gifs/cry.gif",
+        "gifs/cryfloor.gif",
+        "gifs/dabog.gif",
+        "gifs/dabog2.gif",
+        "gifs/dance.gif",
+        "gifs/wind.gif",
+        "gifs/angry.gif",
+      ];
+
+      let messageIndex = 0;
+      let gifIndex = 0;
+
+      function handleNoClick() {
+        const noButton = document.querySelector(".no-button");
+        const gif = document.querySelector(".gif_container img");
+        const container = document.querySelector(".container");
+
+        // Change button text
+        noButton.textContent = messages[messageIndex];
+        messageIndex = (messageIndex + 1) % messages.length;
+
+        // Change GIF
+        gif.src = gifs[gifIndex];
+        gifIndex = (gifIndex + 1) % gifs.length;
+      }
+
+      function moveNoButton() {
+        const noButton = document.querySelector(".no-button");
+        const maxX = window.innerWidth - noButton.offsetWidth - 50;
+        const maxY = window.innerHeight - noButton.offsetHeight - 50;
+
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        noButton.style.position = "absolute";
+        noButton.style.left = `${randomX}px`;
+        noButton.style.top = `${randomY}px`;
+      }
+
+      document.querySelector(".no-button").addEventListener("click", moveNoButton);
+
+      function handleYesClick() {
+        window.location.href = "yes_page.html";
+      }
+    </script>
+  </body>
+</html>
